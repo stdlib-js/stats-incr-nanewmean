@@ -1,4 +1,4 @@
-/**
+/*
 * @license Apache-2.0
 *
 * Copyright (c) 2026 The Stdlib Authors.
@@ -16,16 +16,26 @@
 * limitations under the License.
 */
 
-'use strict';
+// TypeScript Version: 4.1
+
+/// <reference types="https://cdn.jsdelivr.net/gh/stdlib-js/types@esm/index.d.ts"/>
 
 /**
-* Compute an exponentially weighted mean incrementally, ignoring `NaN` values.
+* If provided a value, the accumulator function returns an updated mean. If not provided a value, the accumulator function returns the current mean.
 *
-* @module @stdlib/stats-incr-nanewmean
+* @param x - value
+* @returns mean value
+*/
+type accumulator = ( x?: number ) => number | null;
+
+/**
+* Returns an accumulator function which incrementally computes an exponentially weighted mean, ignoring `NaN` values.
+*
+* @param alpha - smoothing factor
+* @throws must be on the interval `[0,1]`
+* @returns accumulator function
 *
 * @example
-* var incrnanewmean = require( '@stdlib/stats-incr-nanewmean' );
-*
 * var accumulator = incrnanewmean( 0.5 );
 *
 * var v = accumulator();
@@ -43,12 +53,9 @@
 * v = accumulator();
 * // returns -1.5
 */
-
-// MODULES //
-
-var main = require( './main.js' );
+declare function incrnanewmean( alpha: number ): accumulator;
 
 
 // EXPORTS //
 
-module.exports = main;
+export = incrnanewmean;
